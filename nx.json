@@ -1,0 +1,33 @@
+{
+  "npmScope": "chore-monster",
+  "affected": {
+    "defaultBase": "master"
+  },
+  "implicitDependencies": {
+    "angular.json": "*",
+    "package.json": {
+      "dependencies": "*",
+      "devDependencies": "*"
+    },
+    "tsconfig.json": "*",
+    "tslint.json": "*",
+    "nx.json": "*"
+  },
+  "tasksRunnerOptions": {
+    "default": {
+      "runner": "@nrwl/workspace/tasks-runners/default",
+      "options": {
+        "cacheableOperations": ["build", "lint", "test", "e2e"]
+      }
+    }
+  },
+  "projects": {
+    "chore-monster": {
+      "tags": []
+    },
+    "chore-monster-e2e": {
+      "tags": [],
+      "implicitDependencies": ["chore-monster"]
+    }
+  }
+}

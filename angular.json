@@ -1,0 +1,141 @@
+{
+  "version": 1,
+  "projects": {
+    "chore-monster": {
+      "projectType": "application",
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "apps/chore-monster",
+      "sourceRoot": "apps/chore-monster/src",
+      "prefix": "chore-monster",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/chore-monster",
+            "index": "apps/chore-monster/src/index.html",
+            "main": "apps/chore-monster/src/main.ts",
+            "polyfills": "apps/chore-monster/src/polyfills.ts",
+            "tsConfig": "apps/chore-monster/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "apps/chore-monster/src/favicon.ico",
+              "apps/chore-monster/src/assets"
+            ],
+            "styles": ["apps/chore-monster/src/styles.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/chore-monster/src/environments/environment.ts",
+                  "with": "apps/chore-monster/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "chore-monster:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "chore-monster:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "chore-monster:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/chore-monster/tsconfig.app.json",
+              "apps/chore-monster/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!apps/chore-monster/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/chore-monster/jest.config.js",
+            "tsConfig": "apps/chore-monster/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "apps/chore-monster/src/test-setup.ts"
+          }
+        }
+      }
+    },
+    "chore-monster-e2e": {
+      "root": "apps/chore-monster-e2e",
+      "sourceRoot": "apps/chore-monster-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/chore-monster-e2e/cypress.json",
+            "tsConfig": "apps/chore-monster-e2e/tsconfig.e2e.json",
+            "devServerTarget": "chore-monster:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "chore-monster:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["apps/chore-monster-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/chore-monster-e2e/**/*"]
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "defaultCollection": "@nrwl/angular"
+  },
+  "schematics": {
+    "@nrwl/angular:application": {
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": {
+      "unitTestRunner": "jest"
+    }
+  },
+  "defaultProject": "chore-monster"
+}
