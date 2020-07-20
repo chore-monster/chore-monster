@@ -28,6 +28,9 @@
     "chore-monster-e2e": {
       "tags": [],
       "implicitDependencies": ["chore-monster"]
+    },
+    "feature": {
+      "tags": ["scope:chore-monster", "type:feature"]
     }
   }
 }
