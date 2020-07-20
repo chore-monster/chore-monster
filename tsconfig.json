@@ -16,7 +16,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@chore-monster/feature": ["libs/feature/src/index.ts"]
+      "@chore-monster/feature": ["libs/feature/src/index.ts"],
+      "@chore-monster/data": ["libs/data/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

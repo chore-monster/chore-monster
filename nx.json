@@ -31,6 +31,9 @@
     },
     "feature": {
       "tags": ["scope:chore-monster", "type:feature"]
+    },
+    "data": {
+      "tags": ["scope:chore-monster", "type:data"]
     }
   }
 }
