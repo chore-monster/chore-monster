@@ -5,21 +5,20 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
     <p>
       heroes works!
     </p>
+
+    <button data-cy="select-hero"></button>
   `,
   styles: [
     `
       :host {
         display: block;
       }
-    `
+    `,
   ],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeroesComponent implements OnInit {
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }

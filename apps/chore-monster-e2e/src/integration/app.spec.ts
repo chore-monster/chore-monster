@@ -1,4 +1,4 @@
-import { getGreeting } from '../support/app.po';
+import { chmodSync } from 'fs';
 
 describe('chore-monster', () => {
   beforeEach(() => cy.visit('/'));
@@ -11,5 +11,9 @@ describe('chore-monster', () => {
 
   it('should display welcome message', () => {
     cy.get('h1').contains('Welcome to Chore Monster!');
+  });
+
+  it('should display a select hero button', () => {
+    cy.get('[data-cy=select-hero]');
   });
 });
