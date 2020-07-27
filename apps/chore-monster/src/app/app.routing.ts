@@ -1,8 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { HeroesComponent } from './heroes.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  {
+    path: '',
+    redirectTo: '/heroes',
+    pathMatch: 'full',
+  },
+  {
+    path: 'heroes',
+    component: HeroesComponent,
+  },
   //   {
   //     path: 'home',
   //     loadChildren: () =>
