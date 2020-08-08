@@ -14,17 +14,7 @@ const routes: Routes = [
   },
   {
     path: ':id',
-    children: [
-      {
-        path: 'home',
-        component: HeroesComponent,
-      },
-      {
-        path: '',
-        pathMatch: 'full',
-        redirectTo: 'home',
-      },
-    ],
+    component: HeroesComponent,
   },
 ];
 
