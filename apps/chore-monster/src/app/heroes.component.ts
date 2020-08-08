@@ -6,8 +6,10 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
       heroes works!
     </p>
 
-    <ul data-cy="hero-list">
-      <li data-cy="hero">First Hero</li>
+    <ul data-cy="hero-list" *ngFor="let hero of heroes">
+      <li routerLink="/{{ hero }}" [id]="hero" [attr.data-cy]="'hero-' + hero">
+        {{ hero }}
+      </li>
     </ul>
 
     <button data-cy="select-hero"></button>
@@ -22,6 +24,7 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeroesComponent implements OnInit {
+  heroes = ['first', 'second', 'third'];
   constructor() {}
 
   ngOnInit(): void {}

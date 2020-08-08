@@ -14,8 +14,16 @@ describe('chore-monster', () => {
     });
 
     it('should display a hero list', () => {
-      cy.get('[data-cy=hero-list');
-      cy.get('[data-cy=hero');
+      cy.get('[data-cy=hero-list]');
+      cy.get('[data-cy=hero-first]');
+    });
+
+    it('should navigate to /first/home when you click on "first"', () => {
+      cy.get('[id=first]').click();
+
+      cy.location().should((loc) => {
+        expect(loc.pathname).to.eq('/first/home');
+      });
     });
   });
 });

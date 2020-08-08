@@ -12,11 +12,20 @@ const routes: Routes = [
     path: 'heroes',
     component: HeroesComponent,
   },
-  //   {
-  //     path: 'home',
-  //     loadChildren: () =>
-  //       import('@chore/home').then((m) => m.ManagedFeatureModule),
-  //   },
+  {
+    path: ':id',
+    children: [
+      {
+        path: 'home',
+        component: HeroesComponent,
+      },
+      {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: 'home',
+      },
+    ],
+  },
 ];
 
 @NgModule({
