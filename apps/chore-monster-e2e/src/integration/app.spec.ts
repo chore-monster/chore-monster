@@ -15,7 +15,7 @@ describe('chore-monster', () => {
 
     it('should display a hero list', () => {
       cy.get('[data-cy=hero-list]');
-      cy.get('[data-cy=hero-first]');
+      cy.get('[data-cy=first]');
     });
 
     it('should navigate to /first/home when you click on "first"', () => {
