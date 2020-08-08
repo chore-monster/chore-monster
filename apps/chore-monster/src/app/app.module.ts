@@ -2,12 +2,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { AppRoutingModule } from './app.routing';
 import { HeroesComponent } from './heroes.component';
 import { HeroComponent } from './hero.component';
+import { RoutingModule } from 'angular-routing';
 
 @NgModule({
-  imports: [BrowserModule, AppRoutingModule],
+  imports: [BrowserModule, RoutingModule.forRoot()],
   declarations: [AppComponent, HeroesComponent, HeroComponent],
   providers: [],
   bootstrap: [AppComponent],

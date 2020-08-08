@@ -20,18 +20,18 @@ describe('chore-monster', () => {
       cy.get('[data-cy=kit]');
     });
 
-    it('should navigate to /kyle when you click on kyle', () => {
+    it('should navigate to heroes/kyle when you click on kyle', () => {
       cy.get('[data-cy=kyle]').click();
 
       cy.location().should((loc) => {
-        expect(loc.pathname).to.eq('/kyle');
+        expect(loc.pathname).to.eq('/heroes/kyle');
       });
     });
   });
 
   describe('hero', () => {
     before(() => {
-      cy.visit('/kyle');
+      cy.visit('heroes/kyle');
     });
 
     it('should show your chores list', () => {
