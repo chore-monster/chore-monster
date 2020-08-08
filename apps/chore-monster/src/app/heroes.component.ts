@@ -2,8 +2,8 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   template: `
-    <ul data-cy="hero-list" *ngFor="let hero of heroes">
-      <li routerLink="/{{ hero }}" [id]="hero" [attr.data-cy]="hero">
+    <ul data-cy="hero-list" *ngFor="let hero of heroes; index as i">
+      <li routerLink="/{{ hero }}" [id]="i" [attr.data-cy]="hero">
         {{ hero }}
       </li>
     </ul>
@@ -18,7 +18,7 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeroesComponent implements OnInit {
-  heroes = ['first', 'second', 'third'];
+  heroes = ['kyle', 'amanda', 'bee', 'kit'];
   constructor() {}
 
   ngOnInit(): void {}

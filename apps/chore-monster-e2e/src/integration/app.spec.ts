@@ -11,14 +11,20 @@ describe('chore-monster', () => {
   describe('heroes', () => {
     it('should display a hero list', () => {
       cy.get('[data-cy=hero-list]');
-      cy.get('[data-cy=first]');
     });
 
-    it('should navigate to /first when you click on first', () => {
-      cy.get('[id=first]').click();
+    it('should show a link for each family member', () => {
+      cy.get('[data-cy=kyle]');
+      cy.get('[data-cy=amanda]');
+      cy.get('[data-cy=bee]');
+      cy.get('[data-cy=kit]');
+    });
+
+    it('should navigate to /kyle when you click on kyle', () => {
+      cy.get('[data-cy=kyle]').click();
 
       cy.location().should((loc) => {
-        expect(loc.pathname).to.eq('/first');
+        expect(loc.pathname).to.eq('/kyle');
       });
     });
   });
