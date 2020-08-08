@@ -28,4 +28,14 @@ describe('chore-monster', () => {
       });
     });
   });
+
+  describe('hero', () => {
+    before(() => {
+      cy.visit('/kyle');
+    });
+
+    it('should show your chores list', () => {
+      cy.get('[data-cy=chores]');
+    });
+  });
 });
