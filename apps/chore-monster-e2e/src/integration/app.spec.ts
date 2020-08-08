@@ -13,8 +13,9 @@ describe('chore-monster', () => {
       cy.get('h1').contains('Welcome to Chore Monster!');
     });
 
-    it('should display a select hero button', () => {
-      cy.get('[data-cy=select-hero]');
+    it('should display a hero list', () => {
+      cy.get('[data-cy=hero-list');
+      cy.get('[data-cy=hero');
     });
   });
 });

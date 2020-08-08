@@ -6,6 +6,10 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
       heroes works!
     </p>
 
+    <ul data-cy="hero-list">
+      <li data-cy="hero">First Hero</li>
+    </ul>
+
     <button data-cy="select-hero"></button>
   `,
   styles: [
