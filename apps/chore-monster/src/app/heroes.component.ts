@@ -5,7 +5,7 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
   template: `
     <ul data-cy="hero-list" *ngFor="let hero of heroes; index as i">
       <li>
-        <a linkTo="/heroes/{{ hero }}" [id]="i" [attr.data-cy]="hero">
+        <a [routerLink]="['/heroes', hero]" [id]="i" [attr.data-cy]="hero">
           {{ hero }}
         </a>
       </li>
