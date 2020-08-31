@@ -1,3 +1,6 @@
+import { gzipSync } from 'zlib';
+import { xorBy } from 'cypress/types/lodash';
+
 describe('chore-monster', () => {
   describe('/', () => {
     it('should redirect to /heroes', () => {
@@ -36,6 +39,12 @@ describe('chore-monster', () => {
 
     it('should show your chores list', () => {
       cy.get('[data-cy=chores]');
+    });
+
+    it('should show you chore details if you click on a chore', () => {
+      cy.get('[data-cy=chore-0]').click();
+
+      cy.get('[data-cy=chore-detail]');
     });
   });
 });
