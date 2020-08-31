@@ -1,5 +1,6 @@
 import { gzipSync } from 'zlib';
 import { xorBy } from 'cypress/types/lodash';
+import { copyFileSync } from 'fs';
 
 describe('chore-monster', () => {
   describe('/', () => {
@@ -42,9 +43,15 @@ describe('chore-monster', () => {
     });
 
     it('should show you chore details if you click on a chore', () => {
-      cy.get('[data-cy=chore-0]').click();
+      cy.get('[data-cy=chore]').click();
 
-      cy.get('[data-cy=chore-detail]');
+      cy.get('[data-cy=chore-details]');
+    });
+
+    it('should provide a way to hide chore details', () => {
+      cy.get('[data-cy=hide-chore-details]').click();
+
+      cy.get('[data-cy=chore-details]').should('not.exist');
     });
   });
 });

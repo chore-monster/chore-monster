@@ -6,13 +6,16 @@ import { Component } from '@angular/core';
     <h1>HOME</h1>
     <h2>Chores</h2>
     <ol data-cy="chores">
-      <li (click)="onChoreClicked(0)" data-cy="chore-0">
+      <li (click)="onChoreClicked(0)" data-cy="chore">
         Chore 0
       </li>
     </ol>
-    <section *ngIf="selectedChore !== undefined" data-cy="chore-detail">
+    <section *ngIf="selectedChore !== undefined" data-cy="chore-details">
       <h3>Chore Details</h3>
       <p>Chore Id: {{ selectedChore }}</p>
+      <button (click)="onHideChoreClicked()" data-cy="hide-chore-details">
+        Hide Details
+      </button>
     </section>
   `,
   styles: [],
@@ -21,7 +24,11 @@ export class HeroComponent {
   selectedChore: number;
 
   onChoreClicked(id: number) {
-    console.log('clicked', { id });
     this.selectedChore = id;
+  }
+
+  onHideChoreClicked() {
+    // any change
+    this.selectedChore = undefined;
   }
 }
