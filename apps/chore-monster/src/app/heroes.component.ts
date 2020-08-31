@@ -1,10 +1,13 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
+  selector: 'chore-monster-heroes',
   template: `
     <ul data-cy="hero-list" *ngFor="let hero of heroes; index as i">
-      <li routerLink="/{{ hero }}" [id]="i" [attr.data-cy]="hero">
-        {{ hero }}
+      <li>
+        <a [routerLink]="['/heroes', hero]" [id]="i" [attr.data-cy]="hero">
+          {{ hero }}
+        </a>
       </li>
     </ul>
   `,
