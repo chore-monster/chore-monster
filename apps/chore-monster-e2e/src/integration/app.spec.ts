@@ -1,7 +1,3 @@
-import { gzipSync } from 'zlib';
-import { xorBy } from 'cypress/types/lodash';
-import { copyFileSync } from 'fs';
-
 describe('chore-monster', () => {
   describe('/', () => {
     it('should redirect to /heroes', () => {
@@ -40,6 +36,11 @@ describe('chore-monster', () => {
 
     it('should show your chores list', () => {
       cy.get('[data-cy=chores]');
+
+      cy.get('[data-cy=chore]').should((chores) => {
+        expect(chores.length).to.equal(1);
+        expect(chores.eq(0)).to.contain('Chore 0');
+      });
     });
 
     it('should show you chore details if you click on a chore', () => {
@@ -52,6 +53,22 @@ describe('chore-monster', () => {
       cy.get('[data-cy=hide-chore-details]').click();
 
       cy.get('[data-cy=chore-details]').should('not.exist');
+    });
+
+    it('should be able to add new chores to the bottom of the chore list', () => {
+      cy.get('[data-cy=chore').should((chores) => {
+        expect(chores.length).to.equal(1);
+        expect(chores.eq(-1)).to.not.contain('new chore');
+      });
+
+      cy.get('[data-cy=describe-new-chore]').type('new chore');
+
+      cy.get('[data-cy=submit-new-chore]').click();
+
+      cy.get('[data-cy=chore').should((chores) => {
+        expect(chores.length).to.equal(2);
+        expect(chores.eq(-1)).to.contain('new chore');
+      });
     });
   });
 });
