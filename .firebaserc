@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "chore-monster-1337": {
+      "hosting": {
+        "chore-monster": [
+          "chore-monster-1337"
+        ]
+      }
+    }
+  }
+}
