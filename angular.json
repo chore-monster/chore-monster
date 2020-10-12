@@ -25,9 +25,7 @@
               "apps/chore-monster/src/favicon.ico",
               "apps/chore-monster/src/assets"
             ],
-            "styles": [
-              "apps/chore-monster/src/styles.scss"
-            ],
+            "styles": ["apps/chore-monster/src/styles.scss"],
             "scripts": []
           },
           "configurations": {
@@ -85,10 +83,7 @@
               "apps/chore-monster/tsconfig.app.json",
               "apps/chore-monster/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/chore-monster/**/*"
-            ]
+            "exclude": ["**/node_modules/**", "!apps/chore-monster/**/*"]
           }
         },
         "test": {
@@ -125,13 +120,8 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [
-              "apps/chore-monster-e2e/tsconfig.e2e.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/chore-monster-e2e/**/*"
-            ]
+            "tsConfig": ["apps/chore-monster-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/chore-monster-e2e/**/*"]
           }
         }
       }
@@ -149,10 +139,7 @@
               "libs/feature/tsconfig.lib.json",
               "libs/feature/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/feature/**/*"
-            ]
+            "exclude": ["**/node_modules/**", "!libs/feature/**/*"]
           }
         },
         "test": {
@@ -182,10 +169,7 @@
               "libs/data/tsconfig.lib.json",
               "libs/data/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/data/**/*"
-            ]
+            "exclude": ["**/node_modules/**", "!libs/data/**/*"]
           }
         },
         "test": {
@@ -215,10 +199,7 @@
               "libs/ui/tsconfig.lib.json",
               "libs/ui/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/ui/**/*"
-            ]
+            "exclude": ["**/node_modules/**", "!libs/ui/**/*"]
           }
         },
         "test": {

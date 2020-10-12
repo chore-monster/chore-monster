@@ -21,28 +21,6 @@
           "destination": "/index.html"
         }
       ]
-    },
-    {
-      "target": "chore-monster",
-      "public": "dist/apps/chore-monster",
-      "ignore": ["**/.*"],
-      "headers": [
-        {
-          "source": "*.[0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f].+(css|js)",
-          "headers": [
-            {
-              "key": "Cache-Control",
-              "value": "public,max-age=31536000,immutable"
-            }
-          ]
-        }
-      ],
-      "rewrites": [
-        {
-          "source": "**",
-          "destination": "/index.html"
-        }
-      ]
     }
   ],
   "firestore": {
@@ -51,7 +29,8 @@
   },
   "emulators": {
     "firestore": {
-      "port": 4201
+      "host": "localhost",
+      "port": 4999
     },
     "ui": {
       "enabled": true
