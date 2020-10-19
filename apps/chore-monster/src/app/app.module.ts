@@ -1,10 +1,11 @@
 import { CommonModule } from '@angular/common';
-import { isDevMode, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { AngularFireModule } from '@angular/fire';
 import {
   AngularFirestoreModule,
-  SETTINGS as FIRESTORE_SETTINGS,
+  SETTINGS as FIRESTORE_SETTINGS
 } from '@angular/fire/firestore';
+import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
@@ -25,6 +26,7 @@ import { HeroesComponent } from './heroes.component';
     BrowserModule,
     AppRoutingModule,
     CommonModule,
+    ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule
   ],

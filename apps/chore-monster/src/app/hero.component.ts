@@ -3,6 +3,7 @@ import {
   AngularFirestoreCollection,
   AngularFirestore,
 } from '@angular/fire/firestore';
+import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 
 interface Chore {
@@ -46,18 +47,21 @@ interface Chore {
       <h3>Add a New Chore</h3>
 
       <label>Chore Description</label>
-      <input #newChore data-cy="describe-new-chore" />
+      <input [formControl]="description" data-cy="describe-new-chore" />
       <button
-        (click)="onSubmitNewChore(newChore.value)"
+        type="submit"
+        (click)="onSubmitNewChore()"
         data-cy="submit-new-chore"
       >
         Submit New Chore
       </button>
     </section>
+    <button data-cy="delete-all-chores" (click)="onDeleteAllChores()">Delete All Chores</button>
   `,
   styles: [],
 })
 export class HeroComponent implements OnInit {
+  description = new FormControl('');
   private choresCollection: AngularFirestoreCollection<any>;
   chores: Observable<Chore[]>;
 
@@ -70,8 +74,18 @@ export class HeroComponent implements OnInit {
 
   selectedChore: number;
 
-  onSubmitNewChore(name: string) {
-    this.choresCollection.add({ name });
+  async onDeleteAllChores() {
+    const chores = await this.choresCollection.ref.get();
+      // You can use the QuerySnapshot above like in the example i linked
+      chores.forEach(chore => {
+        chore.ref.delete();
+      });
+    }
+  
+
+  onSubmitNewChore() {
+    this.choresCollection.add({ name: this.description.value });
+    this.description.reset();
   }
 
   onChoreClicked(id: number) {

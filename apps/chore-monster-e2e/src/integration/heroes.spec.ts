@@ -1,6 +1,5 @@
 describe('heroes', () => {
   before(() => {
-    indexedDB.deleteDatabase('firebaseLocalStorageDb');
     cy.visit('/heroes');
   });
 
