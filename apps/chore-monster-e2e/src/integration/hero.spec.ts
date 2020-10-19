@@ -22,7 +22,7 @@ describe('hero', () => {
   });
 
   it('should show you chore details if you click on a chore', () => {
-    cy.get('[data-cy=chore]').click();
+    cy.get('[data-cy=chore]').first().click();
 
     cy.get('[data-cy=chore-details]');
   });
@@ -46,12 +46,20 @@ describe('hero', () => {
     });
   });
 
+  it('should be able to delete individual chores', () => {
+    cy.get('[data-cy=delete-chore]').first().click();
+
+    cy.get('[data-cy=chore').should((chores) => {
+      expect(chores.length).to.equal(1);
+    });
+  });
+
   it('should persist chore lists', () => {
     cy.visit('/');
     cy.visit('heroes/kyle');
 
     cy.get('[data-cy=chore').should((chores) => {
-      expect(chores.length).to.equal(2);
+      expect(chores.length).to.equal(1);
     });
   });
 });

@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { AngularFireModule } from '@angular/fire';
 import {
   AngularFirestoreModule,
-  SETTINGS as FIRESTORE_SETTINGS
+  SETTINGS as FIRESTORE_SETTINGS,
 } from '@angular/fire/firestore';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
@@ -14,12 +14,17 @@ import { HeroComponent } from './hero.component';
 import { HeroesComponent } from './heroes.component';
 
 @NgModule({
-  providers: [    
+  providers: [
     {
       provide: FIRESTORE_SETTINGS,
-      useFactory: () => environment.production ?
-      undefined : 
-      { host: 'localhost:4999', ssl: false, experimentalForceLongPolling: true }
+      useFactory: () =>
+        environment.production
+          ? undefined
+          : {
+              host: 'localhost:4999',
+              ssl: false,
+              experimentalForceLongPolling: true,
+            },
     },
   ],
   imports: [
@@ -28,7 +33,7 @@ import { HeroesComponent } from './heroes.component';
     CommonModule,
     ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule
+    AngularFirestoreModule,
   ],
   declarations: [AppComponent, HeroesComponent, HeroComponent],
   bootstrap: [AppComponent],

@@ -6,7 +6,7 @@
     "postinstall": "node ./decorate-angular-cli.js && ngcc --properties es2015 browser module main --first-only --create-ivy-entry-points",
     "start": "concurrently \"npm:start:*\"",
     "start:emulators": "firebase emulators:start --only firestore",
-    "start:e2e": "nx e2e chore-monster-e2e --watch --headless",
+    "start:e2e": "nx e2e chore-monster-e2e --watch",
     "build": "nx build",
     "test": "nx test",
     "lint": "nx workspace-lint && nx lint",

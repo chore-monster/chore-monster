@@ -5,9 +5,11 @@ import {
 } from '@angular/fire/firestore';
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 interface Chore {
-  name: string;
+  description: string;
+  id: string;
 }
 
 @Component({
@@ -17,21 +19,22 @@ interface Chore {
 
     <h2>Chores</h2>
 
-    <section data-cy="chores" *ngIf="(chores | async).length > 0; else empty">
-      <ol>
-        <li
-          *ngFor="let chore of chores | async; index as i"
-          (click)="onChoreClicked(i)"
-          data-cy="chore"
-        >
-          {{ chore.name }}
+    <section *ngIf="(chores | async)?.length > 0; else empty">
+      <ol data-cy="chores">
+        <li *ngFor="let chore of chores | async">
+          <span data-cy="chore" (click)="onSelectChore(chore)">{{
+            chore.description
+          }}</span>
+          <button data-cy="delete-chore" (click)="onChoreDeleted(chore.id)">
+            X
+          </button>
         </li>
       </ol>
 
-      <section *ngIf="selectedChore !== undefined" data-cy="chore-details">
+      <section *ngIf="selectedChore" data-cy="chore-details">
         <h3>Chore Details</h3>
-        <p>Chore Index: {{ selectedChore }}</p>
-        <button (click)="onHideChoreClicked()" data-cy="hide-chore-details">
+        <p>Chore: {{ selectedChore | json }}</p>
+        <button (click)="onHideChoreDetail()" data-cy="hide-chore-details">
           Hide Details
         </button>
       </section>
@@ -50,13 +53,15 @@ interface Chore {
       <input [formControl]="description" data-cy="describe-new-chore" />
       <button
         type="submit"
-        (click)="onSubmitNewChore()"
+        (click)="onSubmitNewChore(description.value)"
         data-cy="submit-new-chore"
       >
         Submit New Chore
       </button>
     </section>
-    <button data-cy="delete-all-chores" (click)="onDeleteAllChores()">Delete All Chores</button>
+    <button data-cy="delete-all-chores" (click)="onDeleteAllChores()">
+      Delete All Chores
+    </button>
   `,
   styles: [],
 })
@@ -64,36 +69,48 @@ export class HeroComponent implements OnInit {
   description = new FormControl('');
   private choresCollection: AngularFirestoreCollection<any>;
   chores: Observable<Chore[]>;
+  selectedChore: Chore;
 
   constructor(private afs: AngularFirestore) {}
 
   ngOnInit() {
     this.choresCollection = this.afs.collection<Chore>('chores');
-    this.chores = this.choresCollection.valueChanges();
+
+    this.chores = this.choresCollection.snapshotChanges().pipe(
+      map((actions): Chore[] =>
+        actions.map((a) => {
+          const data = a.payload.doc.data() as Chore;
+          const id = a.payload.doc.id;
+          return { id, ...data };
+        })
+      )
+    );
   }
 
-  selectedChore: number;
+  onSubmitNewChore(description: string) {
+    if (description) {
+      this.choresCollection.add({ description });
+      this.description.reset();
+    }
+  }
+
+  onSelectChore(chore: Chore) {
+    this.selectedChore = { ...chore };
+  }
+
+  onHideChoreDetail() {
+    this.selectedChore = undefined;
+  }
+
+  onChoreDeleted(id: string) {
+    this.choresCollection.doc(id).delete();
+  }
 
   async onDeleteAllChores() {
     const chores = await this.choresCollection.ref.get();
-      // You can use the QuerySnapshot above like in the example i linked
-      chores.forEach(chore => {
-        chore.ref.delete();
-      });
-    }
-  
-
-  onSubmitNewChore() {
-    this.choresCollection.add({ name: this.description.value });
-    this.description.reset();
-  }
-
-  onChoreClicked(id: number) {
-    this.selectedChore = id;
-  }
-
-  onHideChoreClicked() {
-    // any change
-    this.selectedChore = undefined;
+    // You can use the QuerySnapshot above like in the example i linked
+    chores.forEach((chore) => {
+      chore.ref.delete();
+    });
   }
 }
