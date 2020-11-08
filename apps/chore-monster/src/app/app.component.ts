@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'chore-monster',
-  template: `<router-outlet></router-outlet>`,
+  template: `<cm-shell></cm-shell>`,
   styles: [],
 })
 export class AppComponent {}
