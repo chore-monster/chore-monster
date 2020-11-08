@@ -1,0 +1,25 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: stretch;
+
+  ol {
+    margin: 0;
+  }
+
+  li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+
+    &:last-child {
+      margin-bottom: 0rem;
+    }
+  }
+
+  button {
+    padding: 24px;
+  }
+}

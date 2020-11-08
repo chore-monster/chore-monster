@@ -1,0 +1,31 @@
+<ng-container *ngIf="!chores.length; then empty; else list"></ng-container>
+
+<ng-template #empty>
+
+    <h3 data-cy="empty-list">No Chores Yet!</h3>
+
+</ng-template>
+
+<ng-template #list>
+
+  <ul data-cy="chores-list">
+
+    <li 
+    *ngFor="let chore of chores" 
+    data-cy="chore" 
+    (click)="onClick(chore)">
+      <h3 >{{
+        chore.description
+      }}</h3>
+      <button data-cy="delete-chore" (click)="onDelete(chore.id)">
+        X
+      </button>
+    </li>
+    
+  </ul>
+
+  <button data-cy="delete-all-chores" (click)="onDeleteAll()">
+    Delete All Chores
+  </button>
+
+</ng-template>

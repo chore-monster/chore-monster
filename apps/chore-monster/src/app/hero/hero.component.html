@@ -1,31 +1,21 @@
-
 <h1>HOME</h1>
 
 <h2>Chores</h2>
 
-<section *ngIf="(chores | async)?.length > 0; then list; else empty"></section>
-<ng-template #list>
-  <ol data-cy="chores">
-    <li *ngFor="let chore of chores | async">
-      <label data-cy="chore" (click)="onShowChoreDetails(chore)">{{
-        chore.description
-      }}</label>
-      <button data-cy="delete-chore" (click)="onDeleteChore(chore.id)">
-        X
-      </button>
-    </li>
-  </ol>
-  <section *ngIf="selectedChore" data-cy="chore-details">
-    <h3>Chore Details</h3>
-    <p>Chore: {{ selectedChore | json }}</p>
-    <button (click)="onHideChoreDetails()" data-cy="hide-chore-details">
-      Hide Details
-    </button>
-  </section>
-</ng-template>
-<ng-template #empty>
-    <h3 data-cy="no-chores">No Chores Yet!</h3>
-</ng-template>
+<cm-chore-list 
+  [chores]="chores | async" 
+  (select)="onSelectChore($event)" 
+  (delete)="onDeleteChore($event)"
+  (deleteAll)="onDeleteAllChores()">
+</cm-chore-list>
+
+<section *ngIf="selectedChore" data-cy="chore-details">
+  <h3>Chore Details</h3>
+  <p>Chore: {{ selectedChore | json }}</p>
+  <button (click)="onClickChoreDetails()" data-cy="hide-chore-details">
+    Hide Details
+  </button>
+</section>
 
 <section data-cy="add-new-chore">
   <h3>Add New Chore</h3>
@@ -68,6 +58,3 @@
     </button>
   </form>
 </section>
-<button data-cy="delete-all-chores" (click)="onDeleteAllChores()">
-  Delete All Chores
-</button>

@@ -12,6 +12,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.routing';
 import { HeroComponent } from './hero/hero.component';
 import { HeroesComponent } from './heroes.component';
+import { UiModule } from '@chore/ui';
 
 @NgModule({
   providers: [
@@ -34,6 +35,7 @@ import { HeroesComponent } from './heroes.component';
     ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
+    UiModule,
   ],
   declarations: [AppComponent, HeroesComponent, HeroComponent],
   bootstrap: [AppComponent],

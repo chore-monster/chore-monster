@@ -3,12 +3,7 @@ import {
   AngularFirestoreCollection,
   AngularFirestore,
 } from '@angular/fire/firestore';
-import {
-  FormArray,
-  FormBuilder,
-  FormControl,
-  Validators,
-} from '@angular/forms';
+import { FormArray, FormBuilder, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -26,13 +21,15 @@ export class HeroComponent implements OnInit {
   private choresCollection: AngularFirestoreCollection<any>;
 
   chores: Observable<Chore[]>;
+
   selectedChore: Chore;
-  description = new FormControl('');
+
   choreForm = this.fb.group({
     description: ['', Validators.required],
     difficulty: 0,
     tasks: this.fb.array([]),
   });
+
   get tasks() {
     return this.choreForm.get('tasks') as FormArray;
   }
@@ -67,11 +64,11 @@ export class HeroComponent implements OnInit {
     this.tasks.clear();
   }
 
-  onShowChoreDetails(chore: Chore) {
+  onSelectChore(chore: Chore) {
     this.selectedChore = { ...chore };
   }
 
-  onHideChoreDetails() {
+  onClickChoreDetails() {
     this.selectedChore = undefined;
   }
 
