@@ -2,22 +2,8 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'chore-monster-heroes',
-  template: `
-    <ul data-cy="hero-list" *ngFor="let hero of heroes; index as i">
-      <li>
-        <a [routerLink]="['/heroes', hero]" [id]="i" [attr.data-cy]="hero">
-          {{ hero }}
-        </a>
-      </li>
-    </ul>
-  `,
-  styles: [
-    `
-      :host {
-        display: block;
-      }
-    `,
-  ],
+  templateUrl: `./heroes.component.html`,
+  styleUrls: [`./heroes.component.scss`],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeroesComponent implements OnInit {

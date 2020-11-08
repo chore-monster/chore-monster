@@ -16,7 +16,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@chore/feature": ["libs/feature/src/index.ts"],
+      "@chore/features": ["libs/features/src/index.ts"],
       "@chore/data": ["libs/data/src/index.ts"],
       "@chore/ui": ["libs/ui/src/index.ts"]
     }

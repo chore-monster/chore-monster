@@ -29,7 +29,7 @@
       "tags": [],
       "implicitDependencies": ["chore-monster"]
     },
-    "feature": {
+    "features": {
       "tags": ["scope:chore-monster", "type:feature"]
     },
     "data": {
