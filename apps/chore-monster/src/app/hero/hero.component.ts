@@ -4,6 +4,7 @@ import {
   AngularFirestore,
 } from '@angular/fire/firestore';
 import { FormArray, FormBuilder, Validators } from '@angular/forms';
+import { AlertService } from '@chore/ui';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -34,7 +35,11 @@ export class HeroComponent implements OnInit {
     return this.choreForm.get('tasks') as FormArray;
   }
 
-  constructor(private afs: AngularFirestore, private fb: FormBuilder) {}
+  constructor(
+    private afs: AngularFirestore,
+    private fb: FormBuilder,
+    private alert: AlertService
+  ) {}
 
   ngOnInit() {
     this.choresCollection = this.afs.collection<Chore>('chores');
@@ -48,6 +53,10 @@ export class HeroComponent implements OnInit {
         })
       )
     );
+  }
+
+  onOpenAlert() {
+    this.alert.open();
   }
 
   onAddTask() {

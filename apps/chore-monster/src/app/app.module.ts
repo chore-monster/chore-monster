@@ -13,6 +13,7 @@ import { AppRoutingModule } from './app.routing';
 import { HeroComponent } from './hero/hero.component';
 import { HeroesComponent } from './heroes.component';
 import { UiModule } from '@chore/ui';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   providers: [
@@ -29,7 +30,7 @@ import { UiModule } from '@chore/ui';
     },
   ],
   imports: [
-    BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     CommonModule,
     ReactiveFormsModule,

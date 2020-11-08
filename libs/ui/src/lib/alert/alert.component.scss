@@ -1,0 +1,36 @@
+section {
+  visibility: hidden;
+  opacity: 0;
+
+  &.open {
+    visibility: inherit;
+    opacity: 1;
+  }
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  background: rgba(0, 0, 0, 0.2);
+  transition: opacity 250ms ease-in;
+
+  display: grid;
+  justify-items: center;
+  align-items: center;
+
+  div {
+    background: white;
+    padding: 0.5rem 1rem;
+    width: 250px;
+    height: 300px;
+
+    border-radius: 8px;
+    box-shadow: 0 0 8px 4px rgba(0, 0, 0, 0.1);
+
+    button {
+      padding: 16px;
+    }
+  }
+}

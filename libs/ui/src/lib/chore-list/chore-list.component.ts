@@ -18,7 +18,7 @@ interface Chore {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ChoreListComponent {
-  @Input() chores: Chore[];
+  @Input() chores: Chore[] = [];
 
   @Output() select = new EventEmitter<string>();
   @Output() delete = new EventEmitter<string>();
