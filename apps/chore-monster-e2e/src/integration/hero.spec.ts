@@ -1,11 +1,11 @@
 describe('hero', () => {
   before(() => {
     cy.visit('heroes/kyle');
-    cy.get('[data-cy=delete-all-chores').click();
+    cy.get('[data-cy=delete-all-chores]').click();
   });
 
   it('should show an empty state message until chores are added', () => {
-    cy.get('[data-cy=empty]').should('be.visible');
+    cy.get('[data-cy=no-chores]').should('be.visible');
     cy.get('[data-cy=chores]').should('not.be.visible');
 
     cy.get('[data-cy=describe-new-chore]').type('new chore');

@@ -1,0 +1,9 @@
+:host {
+  display: grid;
+  justify-items: center;
+
+  li {
+    display: flex;
+    justify-content: space-between;
+  }
+}

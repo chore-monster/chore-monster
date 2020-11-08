@@ -10,7 +10,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.routing';
-import { HeroComponent } from './hero.component';
+import { HeroComponent } from './hero/hero.component';
 import { HeroesComponent } from './heroes.component';
 
 @NgModule({
