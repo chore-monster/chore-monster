@@ -5,12 +5,14 @@ import {
 } from '@angular/fire/firestore';
 import { FormArray, FormBuilder, Validators } from '@angular/forms';
 import { AlertService } from '@chore/ui';
+import * as firebase from 'firebase';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 interface Chore {
   description: string;
   id: string;
+  createdAt: firebase.firestore.Timestamp;
 }
 
 @Component({
@@ -19,7 +21,7 @@ interface Chore {
   styleUrls: [`./hero.component.scss`],
 })
 export class HeroComponent implements OnInit {
-  private choresCollection: AngularFirestoreCollection<any>;
+  private choresCollection: AngularFirestoreCollection<Chore>;
 
   chores: Observable<Chore[]>;
 
@@ -42,7 +44,9 @@ export class HeroComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.choresCollection = this.afs.collection<Chore>('chores');
+    this.choresCollection = this.afs.collection<Chore>('chores', (ref) =>
+      ref.orderBy('createdAt')
+    );
 
     this.chores = this.choresCollection.snapshotChanges().pipe(
       map((actions): Chore[] =>
@@ -64,6 +68,7 @@ export class HeroComponent implements OnInit {
     this.choresCollection.add({
       ...this.choreForm.value,
       tasks: filteredTasks,
+      createdAt: firebase.firestore.FieldValue.serverTimestamp(),
     });
     this.choreForm.reset();
     this.tasks.clear();
