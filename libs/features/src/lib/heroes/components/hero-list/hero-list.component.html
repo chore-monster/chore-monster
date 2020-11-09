@@ -1,0 +1,7 @@
+<ul data-cy="hero-list" >
+  <li *ngFor="let hero of heroes">
+    <a [routerLink]="['/heroes', hero.id]" attr.data-cy="hero">
+      {{ hero.name }}
+    </a>
+  </li>
+</ul>

@@ -1,10 +1,4 @@
-<ul data-cy="hero-list" *ngFor="let hero of heroes; index as i">
-    <li>
-      <a [routerLink]="['/heroes', hero]" [id]="i" [attr.data-cy]="hero">
-        {{ hero }}
-      </a>
-    </li>
-</ul>
+<cm-hero-list [heroes]="heroes | async"></cm-hero-list>
 
 <section data-cy="add-new-hero">
   <h2>Add New Hero</h2>
