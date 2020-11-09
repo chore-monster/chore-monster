@@ -19,17 +19,16 @@ interface Chore {
 })
 export class ChoreListComponent {
   @Input() chores: Chore[] = [];
-
-  @Output() select = new EventEmitter<string>();
+  @Output() complete = new EventEmitter<Chore>();
   @Output() delete = new EventEmitter<string>();
   @Output() deleteAll = new EventEmitter<null>();
 
-  onClick(id: string) {
-    this.select.emit(id);
+  onComplete(chore: Chore) {
+    this.complete.emit(chore);
   }
 
-  onDelete(id: string) {
-    this.delete.emit(id);
+  onDelete(chore: Chore) {
+    this.delete.emit(chore.id);
   }
 
   onDeleteAll() {

@@ -4,15 +4,24 @@ import {
   AngularFirestore,
 } from '@angular/fire/firestore';
 import { FormArray, FormBuilder, Validators } from '@angular/forms';
-import { AlertService } from '@chore/ui';
+import { ActivatedRoute } from '@angular/router';
 import * as firebase from 'firebase';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 interface Chore {
-  description: string;
   id: string;
-  createdAt: firebase.firestore.Timestamp;
+  description: string;
+  createdAt: firebase.firestore.FieldValue;
+  lastCompletedAt: firebase.firestore.FieldValue;
+  invoices: string[];
+}
+
+interface Invoice {
+  userId: string;
+  choreId: string;
+  completedAt: firebase.firestore.FieldValue;
+  pending: boolean;
 }
 
 @Component({
@@ -22,10 +31,9 @@ interface Chore {
 })
 export class HeroComponent implements OnInit {
   private choresCollection: AngularFirestoreCollection<Chore>;
+  private invoicesCollection: AngularFirestoreCollection<Invoice>;
 
   chores: Observable<Chore[]>;
-
-  selectedChore: Chore;
 
   choreForm = this.fb.group({
     description: ['', Validators.required],
@@ -40,12 +48,12 @@ export class HeroComponent implements OnInit {
   constructor(
     private afs: AngularFirestore,
     private fb: FormBuilder,
-    private alert: AlertService
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit() {
     this.choresCollection = this.afs.collection<Chore>('chores', (ref) =>
-      ref.orderBy('createdAt')
+      ref.orderBy('lastCompletedAt')
     );
 
     this.chores = this.choresCollection.snapshotChanges().pipe(
@@ -57,6 +65,8 @@ export class HeroComponent implements OnInit {
         })
       )
     );
+
+    this.invoicesCollection = this.afs.collection<Invoice>('invoices');
   }
 
   onAddTask() {
@@ -69,19 +79,32 @@ export class HeroComponent implements OnInit {
       ...this.choreForm.value,
       tasks: filteredTasks,
       createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+      lastCompletedAt: firebase.firestore.FieldValue.serverTimestamp(),
+      invoices: [],
     });
     this.choreForm.reset();
     this.tasks.clear();
   }
 
-  onSelectChore(chore: Chore) {
-    this.selectedChore = { ...chore };
-    this.alert.open();
-  }
+  onCompleteChore(chore: Chore) {
+    const batch = this.afs.firestore.batch();
 
-  onClickChoreDetails() {
-    this.selectedChore = undefined;
-    this.alert.close();
+    const invoiceId = this.afs.createId();
+    const invoiceRef = this.invoicesCollection.doc(invoiceId).ref;
+    batch.set(invoiceRef, {
+      userId: this.route.snapshot.params.id,
+      choreId: chore.id,
+      completedAt: firebase.firestore.FieldValue.serverTimestamp(),
+      pending: true,
+    });
+
+    const choreRef = this.choresCollection.doc(chore.id).ref;
+    batch.update(choreRef, {
+      invoices: [invoiceId, ...chore.invoices],
+      lastCompletedAt: firebase.firestore.FieldValue.serverTimestamp(),
+    });
+
+    return batch.commit();
   }
 
   onDeleteChore(id: string) {

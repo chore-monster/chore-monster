@@ -1,20 +1,10 @@
-<cm-alert>
-  <section data-cy="chore-details">
-    <h3>Chore Details</h3>
-    <pre>Chore: {{ selectedChore | json }}</pre>
-    <button (click)="onClickChoreDetails()" data-cy="hide-chore-details">
-      Hide Details
-    </button>
-  </section>
-</cm-alert>
-
 <h1>HOME</h1>
 
 <h2>Chores</h2>
 
 <cm-chore-list 
   [chores]="chores | async" 
-  (select)="onSelectChore($event)" 
+  (complete)="onCompleteChore($event)"
   (delete)="onDeleteChore($event)"
   (deleteAll)="onDeleteAllChores()">
 </cm-chore-list>

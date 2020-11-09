@@ -39,7 +39,9 @@ export class HeroesComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.heroesCollection = this.afs.collection<Hero>('Heroes');
+    this.heroesCollection = this.afs.collection<Hero>('heroes', (ref) =>
+      ref.orderBy('name')
+    );
 
     this.heroes = this.heroesCollection.snapshotChanges().pipe(
       map((actions): Hero[] =>

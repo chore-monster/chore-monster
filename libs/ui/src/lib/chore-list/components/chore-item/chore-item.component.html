@@ -1,0 +1,11 @@
+<li data-cy="chore">
+  <h3 (click)="onClick()">{{
+    chore.description
+  }}</h3>
+  <section *ngIf="showDetails" data-cy="chore-details">
+    <h3>Chore Details</h3>
+    <pre>{{ chore | json }}</pre>
+    <button data-cy="complete-chore" (click)="onComplete()">&#10003;</button>
+    <button data-cy="delete-chore" (click)="onDelete()">X</button>
+  </section>
+</li>
