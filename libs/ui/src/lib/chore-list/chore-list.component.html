@@ -6,11 +6,8 @@
 
 <ng-template #list>
   <ul data-cy="chores-list">
-    <li 
-    *ngFor="let chore of chores" 
-    data-cy="chore" 
-    (click)="onClick(chore)">
-      <h3 >{{
+    <li *ngFor="let chore of chores" data-cy="chore" >
+      <h3 (click)="onClick(chore)">{{
         chore.description
       }}</h3>
       <button data-cy="delete-chore" (click)="onDelete(chore.id)">
