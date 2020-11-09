@@ -1,6 +1,12 @@
-<cm-alert></cm-alert>
-
-<button (click)="onOpenAlert()">Open Alert</button>
+<cm-alert>
+  <section data-cy="chore-details">
+    <h3>Chore Details</h3>
+    <pre>Chore: {{ selectedChore | json }}</pre>
+    <button (click)="onClickChoreDetails()" data-cy="hide-chore-details">
+      Hide Details
+    </button>
+  </section>
+</cm-alert>
 
 <h1>HOME</h1>
 
@@ -12,14 +18,6 @@
   (delete)="onDeleteChore($event)"
   (deleteAll)="onDeleteAllChores()">
 </cm-chore-list>
-
-<section *ngIf="selectedChore" data-cy="chore-details">
-  <h3>Chore Details</h3>
-  <p>Chore: {{ selectedChore | json }}</p>
-  <button (click)="onClickChoreDetails()" data-cy="hide-chore-details">
-    Hide Details
-  </button>
-</section>
 
 <section data-cy="add-new-chore">
   <h3>Add New Chore</h3>

@@ -4,4 +4,30 @@
         {{ hero }}
       </a>
     </li>
-  </ul>
+</ul>
+
+<section data-cy="add-new-hero">
+  <h2>Add New Hero</h2>
+  <form [formGroup]="heroForm" (ngSubmit)="onSubmitNewHero()">
+    <label>
+      Name:
+      <input
+        type="text"
+        formControlName="name"
+        data-cy="hero-name"
+      />
+    </label>
+    <br />
+    <label>
+      Admin?
+      <input type="checkbox" formControl="admin" data-cy="hero-admin"/>
+    </label>
+    <button
+      type="submit"
+      [disabled]="!heroForm.valid"
+      data-cy="submit-new-hero"
+    >
+      Submit New Hero
+    </button>
+  </form>
+</section>

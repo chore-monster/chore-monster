@@ -55,10 +55,6 @@ export class HeroComponent implements OnInit {
     );
   }
 
-  onOpenAlert() {
-    this.alert.open();
-  }
-
   onAddTask() {
     this.tasks.push(this.fb.control(''));
   }
@@ -75,10 +71,12 @@ export class HeroComponent implements OnInit {
 
   onSelectChore(chore: Chore) {
     this.selectedChore = { ...chore };
+    this.alert.open();
   }
 
   onClickChoreDetails() {
     this.selectedChore = undefined;
+    this.alert.close();
   }
 
   onDeleteChore(id: string) {
