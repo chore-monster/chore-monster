@@ -12,7 +12,7 @@ const routes: Routes = [
     loadChildren: () => import('@chore/features').then((m) => m.HeroesModule),
   },
   {
-    path: 'heroes/:id',
+    path: 'sanctum/:glyph',
     loadChildren: () => import('@chore/features').then((m) => m.HeroModule),
   },
 ];

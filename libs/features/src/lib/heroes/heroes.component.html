@@ -1,20 +1,20 @@
-<cm-hero-list [heroes]="heroes | async"></cm-hero-list>
+<cm-hero-list [heroes]="heroes | async" (deleteAll) = "onDeleteAll()"></cm-hero-list>
 
 <section data-cy="add-new-hero">
   <h2>Add New Hero</h2>
-  <form [formGroup]="heroForm" (ngSubmit)="onSubmitNewHero()">
+  <form [formGroup]="heroForm" (ngSubmit)="onSubmit()">
     <label>
       Name:
       <input
         type="text"
         formControlName="name"
-        data-cy="hero-name"
+        data-cy="new-hero-name"
       />
     </label>
     <br />
     <label>
       Admin
-      <input type="checkbox" formControl="admin" data-cy="hero-admin"/>
+      <input type="checkbox" formControl="admin" data-cy="new-hero-admin"/>
     </label>
     <button
       type="submit"

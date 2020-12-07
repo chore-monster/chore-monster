@@ -1,19 +1,21 @@
 describe('hero', () => {
   before(() => {
-    cy.visit('heroes/kyle');
-    cy.get('[data-cy=delete-all-chores]').click();
+    cy.visit('heroes');
+    cy.get('[data-cy=new-hero-name]').type("Al O'wishus");
+    cy.get('[data-cy=submit-new-hero]').click();
+    cy.get('[data-cy=hero]').first().click();
   });
 
   it('should show an empty state message until chores are added', () => {
     cy.get('[data-cy=no-chores]').should('be.visible');
     cy.get('[data-cy=chores]').should('not.be.visible');
 
-    cy.get('[data-cy=describe-new-chore]').type('new chore');
+    cy.get('[data-cy=chore-description]').type('new chore');
     cy.get('[data-cy=submit-new-chore]').click();
 
-    cy.get('[data-cy=empty]').should('not.be.visible');
+    cy.get('[data-cy=no-chores]').should('not.be.visible');
     cy.get('[data-cy=chores]').should('be.visible');
-    cy.get('[data-cy=describe-new-chore]').should('have.value', '');
+    cy.get('[data-cy=chore-description]').should('have.value', '');
 
     cy.get('[data-cy=chore]').should((chores) => {
       expect(chores.length).to.equal(1);
@@ -34,11 +36,13 @@ describe('hero', () => {
   });
 
   it('should be able to add new chores to the chore list', () => {
-    cy.get('[data-cy=describe-new-chore]').type('second chore');
+    cy.get('[data-cy=chore-description]').type('second chore');
+    cy.get('[data-cy=chore-difficulty]').type('100');
 
     cy.get('[data-cy=submit-new-chore]').click();
 
-    cy.get('[data-cy=describe-new-chore]').should('have.value', '');
+    cy.get('[data-cy=chore-description]').should('have.value', '');
+    cy.get('[data-cy=chore-difficulty]').should('have.value', '0');
 
     cy.get('[data-cy=chore').should((chores) => {
       expect(chores.length).to.equal(2);

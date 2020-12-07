@@ -54,7 +54,7 @@ export class HeroesComponent implements OnInit {
     );
   }
 
-  onSubmitNewHero() {
+  onSubmit() {
     this.heroesCollection.add({
       ...this.heroForm.value,
     });
@@ -62,24 +62,24 @@ export class HeroesComponent implements OnInit {
     this.heroForm.reset();
   }
 
-  onSelectChore(hero: Hero) {
+  onSelect(hero: Hero) {
     this.activeHero = { ...hero };
     this.alert.open();
   }
 
-  onClickChoreDetails() {
+  onClick() {
     this.activeHero = undefined;
     this.alert.close();
   }
 
-  onDeleteChore(id: string) {
+  onDelete(id: string) {
     this.heroesCollection.doc(id).delete();
   }
 
-  async onDeleteAllheroes() {
+  async onDeleteAll() {
     const heroes = await this.heroesCollection.ref.get();
-    heroes.forEach((chore) => {
-      chore.ref.delete();
+    heroes.forEach((hero) => {
+      hero.ref.delete();
     });
   }
 }

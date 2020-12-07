@@ -1,4 +1,10 @@
-import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
+import {
+  Component,
+  ChangeDetectionStrategy,
+  Input,
+  Output,
+  EventEmitter,
+} from '@angular/core';
 
 export interface Hero {
   id: string;
@@ -14,4 +20,9 @@ export interface Hero {
 })
 export class HeroListComponent {
   @Input() heroes: Hero[];
+  @Output() deleteAll = new EventEmitter<null>();
+
+  onClick() {
+    this.deleteAll.emit();
+  }
 }

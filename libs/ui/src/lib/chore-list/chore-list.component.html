@@ -1,11 +1,11 @@
 <ng-container *ngIf="!chores.length; then empty; else list"></ng-container>
 
 <ng-template #empty>
-    <h3 data-cy="empty-list">No Chores Yet!</h3>
+  <h3 data-cy="no-chores">No Chores Yet!</h3>
 </ng-template>
 
 <ng-template #list>
-  <ul data-cy="chores-list">
+  <ul data-cy="chores">
     <cm-chore-item 
       *ngFor="let chore of chores"
       [chore]="chore"
