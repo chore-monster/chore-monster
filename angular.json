@@ -25,7 +25,9 @@
               "apps/chore-monster/src/favicon.ico",
               "apps/chore-monster/src/assets"
             ],
-            "styles": ["apps/chore-monster/src/styles.scss"],
+            "styles": [
+              "apps/chore-monster/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -39,7 +41,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "extractCss": true,
               "namedChunks": false,
               "extractLicenses": true,
               "vendorChunk": false,
@@ -57,7 +58,10 @@
                 }
               ]
             }
-          }
+          },
+          "outputs": [
+            "{options.outputPath}"
+          ]
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
@@ -83,7 +87,10 @@
               "apps/chore-monster/tsconfig.app.json",
               "apps/chore-monster/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/chore-monster/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/chore-monster/**/*"
+            ]
           }
         },
         "test": {
@@ -91,7 +98,10 @@
           "options": {
             "jestConfig": "apps/chore-monster/jest.config.js",
             "passWithNoTests": true
-          }
+          },
+          "outputs": [
+            "coverage/apps/chore-monster"
+          ]
         },
         "deploy": {
           "builder": "@angular/fire:deploy",
@@ -120,8 +130,13 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["apps/chore-monster-e2e/tsconfig.e2e.json"],
-            "exclude": ["**/node_modules/**", "!apps/chore-monster-e2e/**/*"]
+            "tsConfig": [
+              "apps/chore-monster-e2e/tsconfig.e2e.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/chore-monster-e2e/**/*"
+            ]
           }
         }
       }
@@ -139,7 +154,10 @@
               "libs/features/tsconfig.lib.json",
               "libs/features/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/features/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/features/**/*"
+            ]
           }
         },
         "test": {
@@ -147,7 +165,10 @@
           "options": {
             "jestConfig": "libs/features/jest.config.js",
             "passWithNoTests": true
-          }
+          },
+          "outputs": [
+            "coverage/libs/features"
+          ]
         }
       },
       "schematics": {
@@ -169,7 +190,10 @@
               "libs/data/tsconfig.lib.json",
               "libs/data/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/data/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/data/**/*"
+            ]
           }
         },
         "test": {
@@ -177,7 +201,10 @@
           "options": {
             "jestConfig": "libs/data/jest.config.js",
             "passWithNoTests": true
-          }
+          },
+          "outputs": [
+            "coverage/libs/data"
+          ]
         }
       },
       "schematics": {
@@ -199,7 +226,10 @@
               "libs/ui/tsconfig.lib.json",
               "libs/ui/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/ui/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/ui/**/*"
+            ]
           }
         },
         "test": {
@@ -207,7 +237,10 @@
           "options": {
             "jestConfig": "libs/ui/jest.config.js",
             "passWithNoTests": true
-          }
+          },
+          "outputs": [
+            "coverage/libs/ui"
+          ]
         }
       },
       "schematics": {
